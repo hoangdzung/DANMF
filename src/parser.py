@@ -8,6 +8,9 @@ def parameter_parser():
     """
     parser = argparse.ArgumentParser(description = "Run DANMF.")
 
+    parser.add_argument("--zout", type=int)
+    parser.add_argument("--mu", type=float)
+     
     parser.add_argument("--edge-path",
                         nargs = "?",
                         default = "./input/ptbr_edges.csv",
