@@ -152,13 +152,26 @@ class DANMF(object):
         if args.zout:
             gt = [0,1,2,3] *32
         elif args.mu:
-
+            node2com=dict()
+            n_com = 0
+            for node in self.graph.nodes():
+                is_old = False
+                for i in self.graph.nodes[node]['community']:
+                    if i in node2com:
+                        is_old = True
+                        break
+                    node2com[i]=n_com
+                if not is_old:
+                    n_com+=1
+            gt = []
+            for node in self.graph.nodes():
+                gt.append(node2com[node])
         else:
             raise NotImplementedError
 
         assert len(pred) == len(gt), "Different number of nodes"
         print(normalized_mutual_info_score(gt,pred,average_method='arithmetic'))
-        
+
     def training(self):
         """
         Training process after pre-training.
