@@ -11,7 +11,7 @@ def main():
     if args.zout:
         graph = girvan_graphs(args.zout)
     elif args.mu:
-        graph = LFR(args.zout)
+        graph = LFR(args.mu)
     else:
         raise NotImplementedError
     # graph = read_graph(args)

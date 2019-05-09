@@ -149,9 +149,9 @@ class DANMF(object):
         for i in range(nx.number_of_nodes(self.graph)):
             pred.append(self.membership[i])
 
-        if args.zout:
+        if self.args.zout:
             gt = [0,1,2,3] *32
-        elif args.mu:
+        elif self.args.mu:
             node2com=dict()
             n_com = 0
             for node in self.graph.nodes():
@@ -170,7 +170,7 @@ class DANMF(object):
             raise NotImplementedError
 
         assert len(pred) == len(gt), "Different number of nodes"
-        print(normalized_mutual_info_score(gt,pred,average_method='arithmetic'))
+        print(normalized_mutual_info_score(gt,pred))
 
     def training(self):
         """
@@ -190,3 +190,4 @@ class DANMF(object):
                 self.calculate_cost(iteration)
         self.save_membership()
         self.save_embedding()
+        self.evaluate_nmi()
