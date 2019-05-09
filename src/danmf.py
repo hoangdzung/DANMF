@@ -6,6 +6,7 @@ import networkx as nx
 from scipy import sparse
 from shallownmf import ShallowNMF
 from sklearn.decomposition import NMF
+from sklearn.metrics.cluster import normalized_mutual_info_score
 
 class DANMF(object):
     """
@@ -143,7 +144,21 @@ class DANMF(object):
         self.membership = {int(i):int(index[i]) for i in range(len(index))}
         with open(self.args.membership_path,"w") as f:
             json.dump(self.membership, f)
-      
+    def evaluate_nmi(self):
+        pred = []
+        for i in range(nx.number_of_nodes(self.graph)):
+            pred.append(self.membership[i])
+
+        if args.zout:
+            gt = [0,1,2,3] *32
+        elif args.mu:
+
+        else:
+            raise NotImplementedError
+
+        assert len(pred) == len(gt), "Different number of nodes"
+        print(normalized_mutual_info_score(gt,pred,average_method='arithmetic'))
+        
     def training(self):
         """
         Training process after pre-training.
