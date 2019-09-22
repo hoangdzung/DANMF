@@ -1,6 +1,7 @@
 from danmf import DANMF
 from parser import parameter_parser
 from utils import read_graph, tab_printer, loss_printer, LFR, girvan_graphs
+import networkx as nx
 
 def main():
     """
@@ -8,7 +9,9 @@ def main():
     """
     args = parameter_parser()
     tab_printer(args)
-    if args.zout:
+    if args.adj_npy is not None:
+        graph = nx.from_numpy_array(np.load(args.adj_npy))
+    elif args.zout:
         graph = girvan_graphs(args.zout)
         args.layers = args.layers + [4]
     elif args.mu:

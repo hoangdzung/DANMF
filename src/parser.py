@@ -10,7 +10,7 @@ def parameter_parser():
 
     parser.add_argument("--zout", type=int)
     parser.add_argument("--mu", type=float)
-     
+    parser.add_argument("--adj_npy")    
     parser.add_argument("--edge-path",
                         nargs = "?",
                         default = "./input/ptbr_edges.csv",
