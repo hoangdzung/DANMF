@@ -10,7 +10,11 @@ def parameter_parser():
     parser.add_argument("--prefix")
     parser.add_argument("--zout", type=int)
     parser.add_argument("--mu", type=float)
+<<<<<<< HEAD
     parser.add_argument('--adj-path')     
+=======
+    parser.add_argument("--adj_npy")    
+>>>>>>> 3713cd159c4c4c240d3c37a1412fb3073d4c57e1
     parser.add_argument("--edge-path",
                         nargs = "?",
 	                help = "Edge list csv.")

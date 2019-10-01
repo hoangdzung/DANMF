@@ -132,11 +132,10 @@ class DANMF(object):
         Save embedding matrix.
         """
         embedding = np.concatenate([np.array(range(self.P.shape[0])).reshape(-1,1), self.P, self.V_s[-1].T], axis = 1)
-        np.save(self.args.prefix+'_danmf_256.npy', embedding[:,1:])
-        np.save(self.args.prefix+'_danmf_128.npy',self.P)
-        columns = ["id"] + ["x_" + str(x) for x in range(self.args.layers[-1]*2)]
-        embedding = pd.DataFrame(embedding, columns = columns)
-        embedding.to_csv(self.args.output_path, index = None)
+        np.save(self.args.output_path,embedding)
+        # columns = ["id"] + ["x_" + str(x) for x in range(self.args.layers[-1]*2)]
+        # embedding = pd.DataFrame(embedding, columns = columns)
+        # embedding.to_csv(self.args.output_path, index = None)
 
     def save_membership(self):
         """
