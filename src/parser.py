@@ -7,15 +7,14 @@ def parameter_parser():
     Representations are sorted by node identifiers.
     """
     parser = argparse.ArgumentParser(description = "Run DANMF.")
-
+    parser.add_argument("--prefix")
     parser.add_argument("--zout", type=int)
     parser.add_argument("--mu", type=float)
-     
+    parser.add_argument('--adj-path')     
     parser.add_argument("--edge-path",
                         nargs = "?",
-                        default = "./input/ptbr_edges.csv",
 	                help = "Edge list csv.")
-
+    parser.add_argument("--graph-path")
     parser.add_argument("--output-path",
                         nargs = "?",
                         default = "./output/ptbr_danmf.csv",
